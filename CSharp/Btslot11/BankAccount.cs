@@ -6,45 +6,48 @@ using System.Threading.Tasks;
 
 namespace CSharp.Btslot11
 {
-    public delegate void BalanceHandler(decimal n);
+    public delegate void NotifyBalance(string msg);
     public class BankAccount
     {
         private decimal balance;
-        public event BalanceHandler BalanceChanged;
+        public event NotifyBalance msgChangeBalance;
         public BankAccount() 
         {
-            BalanceChanged += NotifyChangeBalance;
-            BalanceChanged += Deposit;
-            BalanceChanged += Withdraw;
+            
         }
+        private void NotifyEmail(string msg)
+        {
 
+        }
+        private void NotifySMS(string msg)
+        {
+
+        }
+        private void NotifyBanking(string msg)
+        {
+
+        }
         public decimal Balance
         {
             get => balance;
-            set => balance = value;
+            set
+            {
+              if (balance != value)
+                {
+                    msgChangeBalance("Balance was changed: "+(value - balance));
+                    balance = value;
+                }
+            }
         }
 
-        public void NotifyChangeBalance(decimal n)
-        {
-            Console.WriteLine("Balance of Account was changed: " + n);
-        }
+        
         public void Deposit(decimal n)
         {
-            if (n > 0)
-            {
-                Balance += n;
-                BalanceChanged(n);
-            }
-
+            Balance = n > 0 ? Balance + n : Balance;
         }
         public void Withdraw(decimal n) 
         {
-            if (n > Balance)
-            {
-                throw new ArgumentException("So tien rut vuot qua so tien trong tai khoan");
-            }
-            Balance -= n;
-            BalanceChanged(n);
+            Balance = Balance > n && n > 0 ? Balance - n : Balance;
         }
 
     }
