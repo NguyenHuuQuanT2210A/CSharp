@@ -44,6 +44,7 @@ namespace CSharp.Btslot11
                 throw new ArgumentException("So tien rut vuot qua so tien trong tai khoan");
             }
             Balance -= n;
+            BalanceChanged(n);
         }
 
     }
