@@ -4,11 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CSharp.demo3
+namespace CSharp.demo1
 {
-    public interface ITeacher
+    public class StaticClassDemo
     {
-        void Eat();
 
     }
 }

@@ -13,7 +13,9 @@ namespace CSharp.Btslot11
         public event NotifyBalance msgChangeBalance;
         public BankAccount() 
         {
-            
+            msgChangeBalance += NotifyEmail;
+            msgChangeBalance += NotifySMS;
+            msgChangeBalance += NotifyBanking;
         }
         private void NotifyEmail(string msg)
         {
